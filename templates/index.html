@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>A little surprise ✨</title>
+  <meta name="description" content="A cinematic birthday surprise." />
+
+  <!-- Fonts: elegant display + clean body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body class="screen screen--intro">
+  <!-- Floating particle / starfield canvas -->
+  <canvas id="particles" class="particles" aria-hidden="true"></canvas>
+
+  <!-- Soft ambient orbs to give depth -->
+  <div class="orb orb--pink" aria-hidden="true"></div>
+  <div class="orb orb--purple" aria-hidden="true"></div>
+
+  <main class="intro">
+    <p class="intro__kicker">A little something for you</p>
+
+    <!-- Glowing Open button. data-href tells the script where to transition. -->
+    <button
+      id="openBtn"
+      class="open-btn"
+      type="button"
+      data-href="{{ url_for('reveal') }}"
+      aria-label="Open the surprise"
+    >
+      <span class="open-btn__glow" aria-hidden="true"></span>
+      <span class="open-btn__label">Open <span class="sparkle">✨</span></span>
+    </button>
+
+    <p class="intro__hint">tap to begin</p>
+  </main>
+
+  <!-- Cinematic fade-to-black overlay used during route transition -->
+  <div id="curtain" class="curtain" aria-hidden="true"></div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script>
+    // Boot the intro screen behavior.
+    BirthdaySurprise.initIntro();
+  </script>
+</body>
+</html>
